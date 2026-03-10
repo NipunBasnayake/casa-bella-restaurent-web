@@ -5,10 +5,43 @@ import styles from './Reservation.module.css';
 
 export default function Reservation() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem('name') as HTMLInputElement).value,
+      phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
+      email: (form.elements.namedItem('email') as HTMLInputElement).value,
+      date: (form.elements.namedItem('date') as HTMLInputElement).value,
+      time: (form.elements.namedItem('time') as HTMLSelectElement).value,
+      guests: parseInt((form.elements.namedItem('guests') as HTMLSelectElement).value, 10),
+      requests: (form.elements.namedItem('requests') as HTMLTextAreaElement).value,
+    };
+
+    try {
+      const res = await fetch('/api/reservations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        setIsSubmitted(true);
+        form.reset();
+      } else {
+        alert('Failed to submit reservation. Please try again.');
+      }
+    } catch (error) {
+      alert('Network error. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -52,27 +85,27 @@ export default function Reservation() {
                   <div className="grid grid-2">
                     <div className="form-group">
                       <label htmlFor="name" className="form-label">Full Name</label>
-                      <input type="text" id="name" className="form-control" required placeholder="Giovanni Rossi" />
+                      <input type="text" id="name" name="name" className="form-control" required placeholder="Giovanni Rossi" />
                     </div>
                     <div className="form-group">
                       <label htmlFor="phone" className="form-label">Phone Number</label>
-                      <input type="tel" id="phone" className="form-control" required placeholder="(555) 000-0000" />
+                      <input type="tel" id="phone" name="phone" className="form-control" required placeholder="(555) 000-0000" />
                     </div>
                   </div>
 
                   <div className="form-group">
                     <label htmlFor="email" className="form-label">Email Address</label>
-                    <input type="email" id="email" className="form-control" required placeholder="g.rossi@example.com" />
+                    <input type="email" id="email" name="email" className="form-control" required placeholder="g.rossi@example.com" />
                   </div>
 
                   <div className="grid grid-3">
                     <div className="form-group">
                       <label htmlFor="date" className="form-label">Date</label>
-                      <input type="date" id="date" className="form-control" required />
+                      <input type="date" id="date" name="date" className="form-control" required />
                     </div>
                     <div className="form-group">
                       <label htmlFor="time" className="form-label">Time</label>
-                      <select id="time" className="form-control" required>
+                      <select id="time" name="time" className="form-control" required>
                         <option value="">Select Time</option>
                         <option value="17:00">5:00 PM</option>
                         <option value="17:30">5:30 PM</option>
@@ -87,7 +120,7 @@ export default function Reservation() {
                     </div>
                     <div className="form-group">
                       <label htmlFor="guests" className="form-label">Guests</label>
-                      <select id="guests" className="form-control" required>
+                      <select id="guests" name="guests" className="form-control" required>
                         <option value="">Number of Guests</option>
                         <option value="1">1 Person</option>
                         <option value="2">2 People</option>
@@ -101,10 +134,12 @@ export default function Reservation() {
 
                   <div className="form-group">
                     <label htmlFor="requests" className="form-label">Special Requests (Optional)</label>
-                    <textarea id="requests" className="form-control" rows={4} placeholder="Dietary restrictions, special occasions, etc."></textarea>
+                    <textarea id="requests" name="requests" className="form-control" rows={4} placeholder="Dietary restrictions, special occasions, etc."></textarea>
                   </div>
 
-                  <button type="submit" className="btn btn-primary" style={{width: '100%'}}>Request Reservation</button>
+                  <button type="submit" className="btn btn-primary" style={{width: '100%'}} disabled={isSubmitting}>
+                    {isSubmitting ? 'Requesting...' : 'Request Reservation'}
+                  </button>
                 </form>
               </>
             )}
