@@ -15,7 +15,7 @@ export default function Home() {
           priority
           className={styles.heroImage}
         />
-        <div className={`container ${styles.heroContent}`}>
+        <div className={styles.heroContent}>
           <h1 className={`${styles.heroTitle} fade-in`}>A Taste of Italy</h1>
           <p className={`${styles.heroSubtitle} fade-in delay-100`}>
             Experience authentic Italian fine dining, where traditional recipes meet modern elegance.
@@ -103,7 +103,7 @@ export default function Home() {
         <div className={styles.experienceOverlay}></div>
         <div className={`container ${styles.experienceContent}`}>
           <div className={styles.testimonialBox}>
-            <span className={styles.quoteIcon}>"</span>
+            <span className={styles.quoteIcon}>&ldquo;</span>
             <p className={styles.quoteText}>
               The ambiance is unparalleled, the service impeccable, and the food transports you directly to Rome. Casa Bella is truly a gem.
             </p>

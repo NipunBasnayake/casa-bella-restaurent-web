@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Image from 'next/image';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -11,9 +11,15 @@ export default function Footer() {
             Authentic Italian flavors in an elegant setting. Experience true culinary artistry in the heart of the city.
           </p>
           <div className={styles.socialLinks}>
-            <a href="#" aria-label="Instagram">IG</a>
-            <a href="#" aria-label="Facebook">FB</a>
-            <a href="#" aria-label="Twitter">TW</a>
+            <a href="#" aria-label="Instagram">
+              <Image src="/images/logos/icon-instagram.png" alt="Instagram" width={24} height={24} />
+            </a>
+            <a href="#" aria-label="Facebook">
+              <Image src="/images/logos/icon-facebook.png" alt="Facebook" width={24} height={24} />
+            </a>
+            <a href="#" aria-label="Twitter">
+              <Image src="/images/logos/icon-x.png" alt="X (Twitter)" width={24} height={24} />
+            </a>
           </div>
         </div>
 

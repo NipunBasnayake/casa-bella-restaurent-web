@@ -13,13 +13,13 @@ export default function Reservation() {
     
     const form = e.currentTarget;
     const data = {
-      name: (form.elements.namedItem('name') as HTMLInputElement).value,
+      customerName: (form.elements.namedItem('name') as HTMLInputElement).value,
       phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
       email: (form.elements.namedItem('email') as HTMLInputElement).value,
       date: (form.elements.namedItem('date') as HTMLInputElement).value,
       time: (form.elements.namedItem('time') as HTMLSelectElement).value,
       guests: parseInt((form.elements.namedItem('guests') as HTMLSelectElement).value, 10),
-      requests: (form.elements.namedItem('requests') as HTMLTextAreaElement).value,
+      specialRequest: (form.elements.namedItem('requests') as HTMLTextAreaElement).value,
     };
 
     try {
@@ -37,7 +37,7 @@ export default function Reservation() {
       } else {
         alert('Failed to submit reservation. Please try again.');
       }
-    } catch (error) {
+    } catch {
       alert('Network error. Please try again later.');
     } finally {
       setIsSubmitting(false);

@@ -118,9 +118,9 @@
 }
 
 .mapSection {
-  height: 400px;
   width: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 .mapPlaceholder {

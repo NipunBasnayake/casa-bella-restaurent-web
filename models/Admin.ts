@@ -2,13 +2,15 @@ import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IAdmin extends Document {
   username: string;
-  passwordHash: string;
+  password: string;
+  role: string;
   createdAt: Date;
 }
 
 const AdminSchema: Schema = new Schema({
   username: { type: String, required: true, unique: true },
-  passwordHash: { type: String, required: true },
+  password: { type: String, required: true },
+  role: { type: String, default: 'admin' },
   createdAt: { type: Date, default: Date.now },
 });
 

@@ -11,19 +11,21 @@
 }
 
 .header.scrolled {
-  background-color: rgba(26, 26, 26, 0.6);
+  background-color: rgba(26, 26, 26, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
   height: 70px;
 }
 
-.header.scrolled .logo, .header.scrolled .navLinks a:not(.btn) {
+.header.scrolled .logo,
+.header.scrolled .navLinks a:not(.btn) {
   color: var(--color-primary-light);
 }
 
-/* On non-scrolled, text is light by default since it will overlay hero image */
+/* Logo */
+
 .logo {
   font-family: var(--font-heading);
   font-size: 1.8rem;
@@ -33,12 +35,20 @@
   text-transform: uppercase;
 }
 
+/* Container */
+
 .navContainer {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
 }
+
+/* Desktop nav */
 
 .navLinks {
   display: flex;
@@ -55,6 +65,8 @@
   transition: var(--transition-smooth);
   position: relative;
 }
+
+/* underline hover animation */
 
 .navLinks a:not(.btn)::after {
   content: '';
@@ -75,62 +87,145 @@
   color: var(--color-accent-gold) !important;
 }
 
-.mobileToggle {
-  display: none;
+/* Actions (language + button) */
+
+.mobileActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
+/* Hamburger button */
+
+.mobileToggle {
+  display: none;
+  width: 30px;
+  height: 20px;
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Hamburger icon */
+
+.hamburger {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-primary-light);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: var(--transition-smooth);
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-primary-light);
+  left: 0;
+  transition: var(--transition-smooth);
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  top: 8px;
+}
+
+/* Active hamburger */
+
+.hamburgerActive {
+  background-color: transparent;
+}
+
+.hamburgerActive::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.hamburgerActive::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* ========================= */
+/* MOBILE NAVIGATION */
+/* ========================= */
+
 @media (max-width: 768px) {
+
+  .mobileToggle {
+    display: block;
+    z-index: 1002;
+  }
+
   .navLinks {
     position: fixed;
-    top: var(--header-height);
-    left: 0;
+    inset: 0;
     width: 100%;
-    height: calc(100vh - var(--header-height));
-    background-color: var(--color-primary-dark);
+    height: 100vh;
+
+    background: rgba(20,20,20,0.96);
+    backdrop-filter: blur(10px);
+
+    display: flex;
     flex-direction: column;
+
+    /* CENTER NAV ITEMS */
+    align-items: center;
     justify-content: center;
-    transform: translateX(100%);
-    transition: var(--transition-smooth);
+
+    text-align: center;
+    gap: 2rem;
+
     padding: 2rem;
+
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+
+    z-index: 1001;
   }
 
   .navLinks.mobileOpen {
     transform: translateX(0);
   }
 
-  .mobileToggle {
-    display: block;
-    width: 30px;
-    height: 20px;
-    position: relative;
-    z-index: 1001;
+  .navLinks a:not(.btn) {
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
   }
 
-  .hamburger {
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: var(--color-primary-light);
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: var(--transition-smooth);
+  .mobileActions {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
   }
 
-  .hamburger::before, .hamburger::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background-color: var(--color-primary-light);
-    left: 0;
-    transition: var(--transition-smooth);
+  .mobileActions .btn {
+    width: 220px;
+    text-align: center;
   }
 
-  .hamburger::before { top: -8px; }
-  .hamburger::after { top: 8px; }
+}
 
-  .hamburgerActive { background-color: transparent; }
-  .hamburgerActive::before { top: 0; transform: rotate(45deg); }
-  .hamburgerActive::after { top: 0; transform: rotate(-45deg); }
+/* Small phones */
+
+@media (max-width: 480px) {
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .navContainer {
+    padding: 0 18px;
+  }
+
 }

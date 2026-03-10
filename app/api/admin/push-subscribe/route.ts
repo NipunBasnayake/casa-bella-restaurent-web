@@ -1,12 +1,11 @@
 import { NextResponse } from 'next/server';
+import { getAuthenticatedAdmin } from '@/lib/adminAuth';
 import connectToDatabase from '@/lib/mongodb';
 import PushSubscription from '@/models/PushSubscription';
-import { cookies } from 'next/headers';
 
 export async function POST(req: Request) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get('admin_token');
-  if (!token) {
+  const admin = await getAuthenticatedAdmin();
+  if (!admin) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

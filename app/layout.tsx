@@ -1,29 +1,55 @@
-import type { Metadata } from 'next';
-import './globals.css';
-import Navbar from '@/components/Navbar';
+import type { Metadata, Viewport } from 'next';
+import { Inter, Playfair_Display } from 'next/font/google';
 import Footer from '@/components/Footer';
-import Script from 'next/script';
+import Navbar from '@/components/Navbar';
+import './globals.css';
+
+// Google Fonts: Playfair Display for headings, Inter for body
+const playfair = Playfair_Display({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-playfair' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Casa Bella Ristorante | Authentic Italian Dining',
+    default: 'Casa Bella Ristorante',
     template: '%s | Casa Bella Ristorante',
   },
-  description: 'Experience authentic Italian flavors in an elegant setting. Casa Bella Ristorante offers premium fine dining in the heart of the city.',
+  description: 'Authentic Italian flavors in an elegant setting. Experience Casa Bella Ristorante in the heart of the city.',
   openGraph: {
     title: 'Casa Bella Ristorante',
-    description: 'Authentic Italian flavors in an elegant setting.',
+    description: 'Authentic Italian flavors in an elegant setting. Experience Casa Bella Ristorante in the heart of the city.',
     url: 'https://www.casabellaristorante.com',
     siteName: 'Casa Bella Ristorante',
+    images: [
+      {
+        url: '/images/hero.png',
+        width: 1200,
+        height: 630,
+        alt: 'Casa Bella Ristorante Hero Image',
+      },
+    ],
     locale: 'en_US',
     type: 'website',
   },
+  metadataBase: new URL('https://www.casabellaristorante.com'),
+  icons: {
+    icon: '/logo.png',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
+export const viewport: Viewport = {
+  themeColor: '#8B0000',
+};
+
+// Structured Data (JSON-LD)
 const restaurantJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Restaurant',
   name: 'Casa Bella Ristorante',
+  image: 'https://www.casabellaristorante.com/images/hero.jpg',
   address: {
     '@type': 'PostalAddress',
     streetAddress: '123 Bella Ave',
@@ -34,7 +60,8 @@ const restaurantJsonLd = {
   },
   telephone: '+1-555-123-4567',
   servesCuisine: ['Italian'],
-  priceRange: '$$$'
+  url: 'https://www.casabellaristorante.com',
+  priceRange: '$$'
 };
 
 export default function RootLayout({
@@ -43,36 +70,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en"> 
+    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantJsonLd) }}
         />
       </head>
-      <body>
-        {/* Hidden Google Translate Element */}
-        <div id="google_translate_element" style={{ display: 'none' }}></div>
-        <Script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" strategy="afterInteractive" />
-        <Script id="google-translate-config" strategy="afterInteractive">
-          {`
-            function googleTranslateElementInit() {
-              new google.translate.TranslateElement({
-                pageLanguage: 'en', 
-                includedLanguages: 'en,it,es,fr,de',
-                autoDisplay: false
-              }, 'google_translate_element');
-            }
-          `}
-        </Script>
-
-        <div className="layout-wrapper" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-          <Navbar />
-          <main style={{ flex: '1', width: '100%' }}>
+      <body className="bg-[#FAF3E0] text-gray-900 font-sans min-h-screen flex flex-col">
+        <div className="flex flex-col min-h-screen">
+          <header>
+            <Navbar />
+          </header>
+          <main className="flex-1 w-full">
             {children}
           </main>
-          <Footer />
+          <footer>
+            <Footer />
+          </footer>
         </div>
       </body>
     </html>
