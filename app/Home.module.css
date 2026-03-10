@@ -1,0 +1,254 @@
+.homeContainer {
+  width: 100%;
+}
+
+.heroSection {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: calc(var(--header-height) * -1); /* Pull up under header */
+}
+
+.heroImage {
+  object-fit: cover;
+  z-index: -2;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%);
+  z-index: -1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: var(--color-white);
+  padding-top: var(--header-height);
+  max-width: 800px;
+}
+
+.heroTitle {
+  color: var(--color-white);
+  font-size: clamp(3rem, 6vw, 5rem);
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.heroSubtitle {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+  color: #eeeeee;
+}
+
+.heroBtns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Intro Section */
+.introSection {
+  padding: 8rem 0;
+  background-color: var(--color-primary-light);
+}
+
+.alignCenter {
+  align-items: center;
+}
+
+.introText h2 {
+  margin-bottom: 2rem;
+  color: var(--color-accent-red);
+}
+
+.introText p {
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  color: #4a4a4a;
+}
+
+.readMoreLink {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--color-accent-gold);
+  border-bottom: 1px solid var(--color-accent-gold);
+  padding-bottom: 0.2rem;
+  font-style: italic;
+  transition: var(--transition-smooth);
+}
+
+.readMoreLink:hover {
+  color: var(--color-accent-red);
+  border-color: var(--color-accent-red);
+}
+
+.introImageWrapper {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.introImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Signature Section */
+.signatureSection {
+  padding: 7rem 0;
+  background-color: var(--color-white);
+}
+
+.sectionHeader {
+  margin-bottom: 4rem;
+}
+
+.sectionSubtext {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: #666;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.dishCard {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+}
+
+.dishImageWrapper {
+  position: relative;
+  height: 250px;
+  width: 100%;
+}
+
+.dishImage {
+  object-fit: cover;
+}
+
+.dishInfo {
+  padding: 2rem;
+}
+
+.dishHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 1rem;
+}
+
+.dishHeader h3 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.dishPrice {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-accent-gold);
+  font-weight: 700;
+}
+
+.dishInfo p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.menuCtaWrapper {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+/* Experience Section */
+.experienceSection {
+  position: relative;
+  padding: 8rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.experienceBg {
+  object-fit: cover;
+  z-index: -2;
+}
+
+.experienceOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(44, 42, 41, 0.85); /* Dark charcoal overlay */
+  z-index: -1;
+}
+
+.experienceContent {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+
+.testimonialBox {
+  max-width: 800px;
+  text-align: center;
+  color: var(--color-white);
+  padding: 3rem;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  background-color: rgba(0,0,0,0.2);
+  backdrop-filter: blur(5px);
+}
+
+.quoteIcon {
+  font-family: var(--font-heading);
+  font-size: 5rem;
+  color: var(--color-accent-gold);
+  line-height: 0;
+  display: block;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
+.quoteText {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
+
+.quoteAuthor {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-gold);
+}
+
+@media (max-width: 768px) {
+  .introSection { padding: 4rem 0; }
+  .grid-2 { gap: 3rem; }
+  .signatureSection { padding: 4rem 0; }
+  .quoteText { font-size: 1.4rem; }
+  .testimonialBox { padding: 2rem 1.5rem; }
+}

@@ -1,0 +1,143 @@
+.pageHeader {
+  position: relative;
+  height: 50vh;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--color-white);
+  margin-top: calc(var(--header-height) * -1); /* Pull up under header */
+}
+
+.headerImage {
+  object-fit: cover;
+  z-index: -2;
+}
+
+.overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: -1;
+}
+
+.headerContent {
+  position: relative;
+  z-index: 10;
+  padding-top: var(--header-height);
+}
+
+.headerContent h1 {
+  color: var(--color-white);
+  margin-bottom: 0.5rem;
+}
+
+.headerContent p {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--color-accent-gold);
+}
+
+.storySection {
+  padding: 6rem 0;
+  background-color: var(--color-primary-light);
+}
+
+.alignCenter {
+  align-items: center;
+}
+
+.storyText h2 {
+  color: var(--color-accent-red);
+  margin-bottom: 1.5rem;
+}
+
+.storyText p {
+  color: #555;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  height: 450px;
+}
+
+.imageBlock {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.imageBlock:first-child {
+  transform: translateY(2rem);
+}
+
+.gridImg {
+  object-fit: cover;
+}
+
+.chefSection {
+  padding: 6rem 0;
+  background-color: var(--color-white);
+}
+
+.chefImageWrapper {
+  position: relative;
+  height: 600px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.chefImage {
+  object-fit: cover;
+  object-position: top;
+}
+
+.chefText {
+  padding-left: 2rem;
+}
+
+.chefText h2 {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-gold);
+  margin-bottom: 0.5rem;
+}
+
+.chefName {
+  font-size: 3rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 1.5rem;
+}
+
+.chefText p {
+  color: #555;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.chefText p:last-child {
+  font-style: italic;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--color-accent-red);
+  border-left: 3px solid var(--color-accent-gold);
+  padding-left: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .chefText { padding-left: 0; margin-top: 2rem; }
+  .imageGrid { height: 350px; }
+  .chefImageWrapper { height: 400px; }
+  .storySection, .chefSection { padding: 4rem 0; }
+}

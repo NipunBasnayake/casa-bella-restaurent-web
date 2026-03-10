@@ -1,0 +1,86 @@
+.footer {
+  background-color: var(--color-primary-dark);
+  color: var(--color-primary-light);
+  padding-top: 5rem;
+}
+
+.footerGrid {
+  padding-bottom: 4rem;
+}
+
+.footerLogo {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--color-accent-gold);
+  margin-bottom: 1rem;
+}
+
+.footerDesc {
+  color: #ccc;
+  margin-bottom: 1.5rem;
+  max-width: 300px;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialLinks a {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.socialLinks a:hover {
+  background-color: var(--color-accent-gold);
+  border-color: var(--color-accent-gold);
+  color: var(--color-primary-dark);
+}
+
+.footerHeading {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.address {
+  font-style: normal;
+  color: #ccc;
+  line-height: 1.8;
+}
+
+.contactLink {
+  transition: var(--transition-smooth);
+}
+
+.contactLink:hover {
+  color: var(--color-accent-gold);
+}
+
+.hoursList {
+  color: #ccc;
+}
+
+.hoursList li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 0.5rem;
+}
+
+.bottomBar {
+  background-color: #1a1a1a;
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #888;
+}
